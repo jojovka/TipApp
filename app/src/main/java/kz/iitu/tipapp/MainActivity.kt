@@ -1,6 +1,10 @@
 package kz.iitu.tipapp
 
+import android.content.Context
 import android.os.Bundle
+import android.view.KeyEvent
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import kz.iitu.tipapp.databinding.ActivityMainBinding
 import java.text.NumberFormat
@@ -26,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         binding.myButton.text = "A button" */
 
         binding.calculateButton.setOnClickListener { calculateTip() }
+        binding.costOfServiceEditText.setOnKeyListener { view, keyCode, _ -> handleKeyEvent(view, keyCode) }
     }
 
     //NumberFormat.getCurrencyInstance()
@@ -59,5 +64,15 @@ class MainActivity : AppCompatActivity() {
         // Display the formatted tip value on screen
         displayTip(tip)
 
+    }
+
+    private fun handleKeyEvent(view: View, keyCode: Int): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_ENTER) {
+            // Hide the keyboard
+            val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+            return true
+        }
+        return false
     }
 }
