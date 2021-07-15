@@ -13,5 +13,6 @@
     <string name="primary_color">Primary Color</string>
     <string name="secondary_color">Secondary color</string>
     <string name="email_icon">email icon</string>
+    <string name="label">Label</string>
 
 </resources>
